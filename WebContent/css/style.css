@@ -1,0 +1,89 @@
+
+.redcolor span{		
+	color: red!important;
+}
+.greencolor span{		
+	color: green!important;
+}
+
+.graycolor span{		
+  background-color: #222;
+  color: #fff!important;
+  padding: 3px;
+
+}
+
+.lable_after_input{
+	padding:10px;
+	line-height:40px;
+}
+
+.font_bold{
+	font-weight: bold;
+}
+
+.input_error input{
+	border:solid 1px red;
+}
+
+.sapMInputBaseInner.sapMInputBaseReadonlyInner{
+	border-color:#c0c0c0;
+}
+
+.size2{
+	font-size:1.5rem!important;
+}
+
+.padding10{
+	padding:0.5rem;
+}
+
+.objHeadLineHeight{
+	line-height: 3rem;
+}
+
+.VMIItemsTable .sapMLIBImgNav{
+	  line-height: 5rem!important;
+}
+
+.LineHeight3rem{
+	line-height: 3rem;
+}
+
+.sapMIBar-CTX .sapMTitle{
+	font-weight: 600;
+}
+
+.invisible{
+	display:none!important;
+}
+
+.mar_padding0{
+	margin:0px;
+	padding:0px;
+}
+
+.mar_padding0 .sapMOHBottomRow {
+	margin-top:0px;
+}
+.mar_padding0 .sapMOHBottomRow .sapMOHAttrRow{
+	margin:3px;
+}
+.mar_padding0 .sapMOHBottomRow .sapMOHAttrRow:nth-child(1) span{
+	font-weight:bold;
+}
+.mar_padding0 .sapMOHBottomRow .sapMOHAttrRow:nth-child(3) span{
+	color: #fff;
+	font-size: 0.7rem;
+	background-color: darkorange;
+	padding: 3px;
+	display: block;
+}
+
+.orderPendingItem span{
+	color: #fff!important;
+	font-size: 0.8rem;
+	background-color: darkorange;
+	padding: 3px;
+	display: block;
+}

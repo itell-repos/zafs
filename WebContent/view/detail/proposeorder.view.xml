@@ -1,0 +1,133 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" controllerName="itelli.zafs.view.detail.proposeorder" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Page
+		title="{i18n>PROPOSEORDERSPGAETITLE}"
+		showNavButton="true"
+		navButtonPress="handleCancle" >		
+		<l:Grid
+    defaultSpan="L12 M12 S12"
+    hSpacing="2"
+    width="auto">
+    <l:content>
+      <f:Form id="formProposeOrders"
+        minWidth="1024"
+        maxContainerCols="2"
+        editable="false"
+        class="isReadonly">
+        <f:title>
+          <core:Title text="{i18n>ORDERDETAILS}" />
+        </f:title>
+        <f:layout>
+          <f:ResponsiveGridLayout
+            labelSpanL="3"
+            labelSpanM="3"
+            emptySpanL="4"
+            emptySpanM="4"
+            columnsL="1"
+            columnsM="1" />
+        </f:layout>
+        <f:formContainers>
+          <f:FormContainer>
+            <f:formElements>
+              <f:FormElement label="{i18n>SHIPTO}">
+                <f:fields>
+                  <Text text="{CustomerDetails>/Name1}"   />
+                </f:fields>
+              </f:FormElement>
+              <f:FormElement label="{i18n>ADDRESS}">
+                <f:fields>
+                  <Text text="{CustomerDetails>/Street},{CustomerDetails>/City},{CustomerDetails>/Region}" />
+                </f:fields>
+              </f:FormElement>
+              <f:FormElement label="{i18n>NOTES}">
+                <f:fields>
+                  <Input width="250px" value="" id="orderNotes" />
+                </f:fields>
+              </f:FormElement>
+
+            </f:formElements>
+          </f:FormContainer>
+        </f:formContainers>
+      </f:Form>
+    </l:content>
+  </l:Grid>
+		
+		
+		
+		 <Table id="itemList2" items="{POVMIItems>/results}" mode="Delete"
+    delete="handleDelete"
+    enableBusyIndicator="true">
+        <headerToolbar>
+          <Toolbar>
+            <Label text="{i18n>ITEMS}" />
+            <ToolbarSpacer />
+            </Toolbar>
+        </headerToolbar>
+        <columns>
+          <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+            <Label text="{i18n>MATERIAL}" />
+          </Column>
+		<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+            <Label text="{i18n>ORDERQUANTITY}" />
+		</Column>
+          <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+            <Label text="{i18n>REQUESTEDDELIVERYDATE}" />
+          </Column>
+         <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+            <Label text="{i18n>NOTES}" />
+
+  </Column>
+          
+        </columns>
+        <ColumnListItem id="id1">
+          <cells>
+            <ObjectIdentifier title="{POVMIItems>Material}" text="{POVMIItems>Description}" />
+            <HBox>
+             <Input width="70px" value="{POVMIItems>OrderQty}"  />
+              <Text text="{POVMIItems>Uom}" class="uom lable_after_input"></Text>
+            </HBox>  
+              <DatePicker class="sapUiSmallMarginBottom" dateValue="{parts:[{path:'POVMIItems>CurrInv'}, {path:'POVMIItems>DailyUsage'}], formatter:'itelli.zafs.util.Formatter.requestDeliveryDate'}"    />
+            
+  <l:VerticalLayout
+    class="padding10"
+    width="100%">
+    <l:content>
+        <core:Icon
+			      src="sap-icon://notes"
+			      class="size2"
+			      color="#031E48"
+			      press="handlePopoverPress" app:notes="{POVMIItems>Notes}" >
+			      <core:layoutData>
+			        <FlexItemData growFactor="1" />
+			      </core:layoutData>
+   			</core:Icon>
+      
+    </l:content>
+  </l:VerticalLayout>
+
+           <Input width="50px" value="{Menge}" id="currinventory" />
+           <Text text="{Txz01}"></Text>
+            
+             <HBox>
+             <Input width="50px" value="{Menge}"  />
+              <Text text="{Meins}" class="uom"></Text>
+            </HBox>
+              
+              <Text text="{Meins}" class="uom"></Text>
+               
+         
+          </cells>
+        </ColumnListItem>
+      </Table>
+		
+		
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button	text="{i18n>CANCELBUTTONTEXT}"	press="handleCancle" />
+					<Button id="submitOrder" text="{i18n>SUBMITBUTTONTEXT}"	press="PlaceOrderHandler" />
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

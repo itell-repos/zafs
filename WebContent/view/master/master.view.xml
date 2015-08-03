@@ -1,0 +1,65 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+		controllerName="itelli.zafs.view.master.master" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page class="page"
+		title="{i18n>MASTERTITLE}" >
+		<subHeader>
+			<Bar>
+				<contentMiddle>
+					<SearchField
+					    showRefreshButton="{device>/isNoTouch}"
+						liveChange="handleSearch"						
+						width="100%"
+						placeholder="{i18n>SEARCH}" >
+					</SearchField>
+				</contentMiddle>				
+			</Bar>
+		</subHeader>
+		<List
+			id="list"
+			mode="{device>/listMode}"
+			select="handleListSelect"
+			items="{Customers>/results}" 
+			itemPress="onListSelect" 
+			growing="true"   
+			growingThreshold="10" 
+			growingScrollToLoad="false">
+			<items>
+		      <ObjectListItem
+		        type="Inactive"
+				press="handleListItemPress"
+				title="{Customers>Name1}"
+				number="{Customers>VmiItemCount}"
+				numberUnit="Item(s)">					
+		        <firstStatus>
+					<ObjectStatus
+						text="{
+								parts:[{path:'Customers>DaysInvLeft'}, {path:'Customers>DelFlag'}, {path:'Customers>VmiItemCount'}], 
+								formatter:'itelli.zafs.util.Formatter.colorFormatter'
+							}"/>					
+				</firstStatus>				
+		        <attributes>
+		            <ObjectAttribute text="{Customers>Shipto}" />
+					<ObjectAttribute text="{Customers>City}" />
+					<ObjectAttribute text="Last Update: {Customers>DaysSinceUpdate} day(s) ago" />
+				</attributes>
+		      </ObjectListItem>
+    		</items>
+			<infoToolbar>		     
+		      <Toolbar
+	            id="vsdFilterBar"
+	            active="true"
+	            visible="false"
+	            press="handleInfobarPress">
+	            <Label id="vsdFilterLabel" text="?" />
+	          </Toolbar>
+		    </infoToolbar>
+		</List>
+		<footer>		    
+			<OverflowToolbar id="otbSubheader">
+                 <ToolbarSpacer/> 
+                 <OverflowToolbarButton text="Group" icon="sap-icon://drop-down-list" press="onFilter"/>
+             </OverflowToolbar>               
+		</footer>
+	</Page>
+
+</core:View>

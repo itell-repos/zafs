@@ -1,0 +1,159 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns="sap.m"
+	controllerName="itelli.zafs.view.detail.additem" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="{i18n>ADDITEMPAGETITLE}" showNavButton="true" navButtonPress="handleCancel" >
+		<content>
+			<l:Grid defaultSpan="L12 M12 S12" width="auto">
+				<l:content>
+					<f:Form id="FormChange354" minWidth="1024" maxContainerCols="2"
+						editable="true">
+						<f:title>
+							<core:Title text="{i18n>ADDITEM}" />
+						</f:title>
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanL="3"
+								labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1"
+								columnsM="1" />
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer>
+								<f:formElements>
+									<f:FormElement label="{i18n>MATERIAL}">
+										<f:fields>
+											<Input id="matHelp" type="Text" placeholder="Enter Material ..."
+												showSuggestion="true" showValueHelp="true" valueHelpRequest="openHelpDialog"
+												suggestionItemSelected="_handlewbsValueHelpConfirm"
+												suggestionItems="{ path: '/MaterialSet' }">
+												<suggestionItems>
+													<core:Item text="{MaterialNo}" />
+												</suggestionItems>
+											</Input>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>HERDSIZE}">
+										<f:fields>
+											<Input id="hardSize" value="" editable="false">
+												<layoutData>
+													<l:GridData span="L1 M3 S6" />
+												</layoutData>
+											</Input>
+										</f:fields>										
+									</f:FormElement>
+									<f:FormElement label="{i18n>CURRENTINVENTORY}">
+										<f:fields>
+											<Input id="currInv" value="" liveChange="currentInvLiveChange" editable="false">
+											    <layoutData>
+													<l:GridData span="L1 M3 S4" />
+												</layoutData>												
+											</Input>											
+										</f:fields>
+										<f:fields>
+										    <Text id="curInvUOMLab" visible="false" text="">
+										        <layoutData>
+													<l:GridData span="L1 M1 S2" />
+												</layoutData>														
+											</Text>											
+										</f:fields>
+										<f:fields>
+											<Input id="curInvLBS" visible="false" value="" editable="false">
+											     <layoutData>
+													<l:GridData span="L2 M2 S2" />
+												</layoutData>												  
+											</Input>
+										</f:fields>
+										<f:fields>
+											<Text text="{i18n>LBS}" id="curLbTxt"  visible="false">	
+											     <layoutData>
+													<l:GridData span="L1 M1 S1" />
+												</layoutData>												   
+											</Text>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>DAILYUSAGELBS/DAY}">
+										<f:fields>
+											<Input id="dailyUsg" value="" editable="false" liveChange="dailyUsageLiveChange">	
+											    <layoutData>
+													<l:GridData span="L1 M3 S4" />
+												</layoutData>												
+											</Input>
+										</f:fields>
+										<f:fields>	
+											<Text id="dailyUsgUOMLab" text="" visible="false">
+											     <layoutData>
+													<l:GridData span="L1 M1 S2" />
+												 </layoutData>													
+											</Text>
+										</f:fields>
+										<f:fields>	
+											<Input  value="" id="dailyUsgLBS" visible="false"  editable="false">
+											    <layoutData>
+													<l:GridData span="L2 M2 S2" />
+												 </layoutData>	
+											</Input>
+										</f:fields>
+										<f:fields>
+											<Text id="dailyUsgLBText" text="{i18n>LBS}" visible="false">
+											    <layoutData>
+													<l:GridData span="L1 M1 S2" />
+												 </layoutData>	
+											</Text>																					
+										</f:fields>
+									</f:FormElement>
+
+									<f:FormElement label="{i18n>ORDERQUANTITY}">
+										<f:fields>
+											<Input id="ordQty" value="" editable="false" liveChange="ordQtyLiveChange">
+											    <layoutData>
+													<l:GridData span="L1 M3 S4" />
+												</layoutData>													
+											</Input>
+										</f:fields>
+										<f:fields>
+										    <Text id="ordQtyUOMLab" text="" visible="false">
+										        <layoutData>
+													<l:GridData span="L1 M1 S2" />
+												</layoutData>												
+											</Text>
+										</f:fields>
+										<f:fields>
+											<Input value="" id="ordQtyLBS"  editable="false" visible="false">
+											    <layoutData>
+													<l:GridData span="L2 M2 S2" />
+												 </layoutData>	
+											</Input>
+										</f:fields>
+										<f:fields>											
+											<Text text="{i18n>LBS}" id="orderQtyLBText" visible="false">
+											    <layoutData>
+													<l:GridData span="L1 M1 S2" />
+											 	</layoutData>	
+											</Text>											
+										</f:fields>
+									</f:FormElement>
+
+									<f:FormElement label="{i18n>NOTES}">
+										<f:fields>
+											<Input id="nts" value="" editable="false">
+												<layoutData>
+													<l:GridData span="L5 M6 S12" />
+												</layoutData>
+											</Input>
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</l:content>
+			</l:Grid>
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button text="{i18n>CANCELBUTTONTEXT}" press="handleCancel" />
+					<Button text="{i18n>ADDBUTTONTEXT}" press="handleAddItem" />
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

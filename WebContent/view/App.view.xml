@@ -1,0 +1,8 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="itelli.zafs.view.App" xmlns:html="http://www.w3.org/1999/xhtml"
+	displayBlock="true">	
+<SplitApp id="splitApp"
+		homeIcon="{ 'phone':'phone-icon.png', 'phone@2':'phone-retina.png', 'tablet':'tablet-icon.png', 'tablet@2':'tablet-retina.png', 'icon':'desktop.ico' }">
+   
+</SplitApp>
+</mvc:View>

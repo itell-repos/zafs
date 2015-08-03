@@ -1,0 +1,110 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+		controllerName="itelli.zafs.view.detail.detail" xmlns:form="sap.ui.layout.form"
+		 xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page
+		title="{i18n>DETAILTITLE}"
+		showNavButton="{device>/isPhone}"
+		navButtonPress="handleNavButtonPress" >
+		<ObjectHeader
+			title="{CustomerDetails>/Name1}"
+			number="{CustomerDetails>/VmiItemCount}"
+			numberUnit="Item(s)" icon="sap-icon://customer" >
+			<attributes>			    	
+			    <ObjectAttribute text="Customer No: {CustomerDetails>/Shipto}" />
+				<ObjectAttribute text="{
+							parts:[{path: 'CustomerDetails>/DaysSinceUpdate'}, {path: 'CustomerDetails>/VmiItemCount'}],
+							formatter: 'itelli.zafs.util.Formatter.lastUpdateDate'
+						}" />
+				<ObjectAttribute text="Sold-to: {CustomerDetails>/SoldtoName}  {CustomerDetails>/Soldto}" />		
+			</attributes>
+			<firstStatus>
+				<ObjectStatus
+						text="{
+							parts:[{path:'CustomerDetails>/DaysInvLeft'}, {path:'CustomerDetails>/DelFlag'}, {path:'CustomerDetails>/VmiItemCount'}],
+							formatter: 'itelli.zafs.util.Formatter.colorFormatter'
+						}"/>
+			</firstStatus>
+		</ObjectHeader>
+		<IconTabBar
+			expanded="{device>/isNoPhone}" id="customerDetails" >
+			<items>
+				<IconTabFilter	icon="sap-icon://addresses">
+					<form:SimpleForm
+						id="SupplierForm"
+						minWidth="1024">
+						<core:Title text="{i18n>ADDRESS}" />						
+					</form:SimpleForm>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+		
+		 <Table id="lineItemList" class="VMIItemsTable" items="{VMIItems>/results}" >
+        <headerToolbar>
+          <Toolbar>
+            <Label text="{i18n>ITEMS}" />
+            <ToolbarSpacer />
+            <Button id="addItemBtn" icon="sap-icon://add" press="addItems" text="{i18n>ADDITEM}" />                    
+         	</Toolbar>
+        </headerToolbar>
+        <columns>
+          <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+            <Label text="{i18n>MATERIAL}" />
+          </Column>
+          <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+            <Label text="{i18n>ESTCURRENTINV}" />
+          </Column>
+          <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+            <Label text="{i18n>CURRENTINVENTORY}" />
+          </Column>
+          <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+            <Label text="{i18n>DAILYUSAGE}" />
+          </Column>
+          <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+            <Label text="{i18n>ORDERQUANTITY}" />
+          </Column>
+          <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+            <Label text="{i18n>DAYSINVLEFT}" />
+          </Column>          
+        </columns>
+        <ColumnListItem id="columnlist" type="Navigation" press="handleItemDetail">
+          <cells>
+             <ObjectHeader class="mar_padding0">
+			    <attributes>
+			      <ObjectAttribute  text="{VMIItems>Material}"  />
+			      <ObjectAttribute  text="{VMIItems>Description}" />
+			      <ObjectAttribute  text="{VMIItems>LastSoStatus}" />
+			    </attributes>
+			  </ObjectHeader>            
+            <Text text="{VMIItems>EstInv}" class="LineHeight3rem"></Text>
+            <Input width="70px" value="{VMIItems>CurrInv}" liveChange="handleKeypress" id="currinventory" />
+            <Input width="70px" value="{VMIItems>DailyUsage}" id="dailyusage" liveChange="handleKeypress" />             
+            <HBox>
+             <Input width="70px" value="{VMIItems>OrderQty}" id="orderqty" liveChange="handleKeypress" />
+              <Text text="{VMIItems>Uom}" class="uom lable_after_input"></Text>
+            </HBox>
+            <ObjectIdentifier id="daysInvLft" title="{ path:'VMIItems>DaysInvLeft', formatter: 'itelli.zafs.util.Formatter.floatToNum' }" class="objHeadLineHeight" />
+          </cells>
+        </ColumnListItem>
+      </Table>
+      <footer>
+			<Bar>
+			    <contentLeft>
+			        <Button id="actionSheetBtn" icon="sap-icon://action" 
+						    ariaLabelledBy="actionButtonLabel" 
+						    press="openActionSheet" />	
+			    </contentLeft>
+				<contentRight>
+					<Button
+					    id="updateBtn"
+						text="{i18n>UPDATEBUTTONTEXT}"						
+						press="handleProposeOrder" />
+					<Button
+						id="proposeOrder"
+						text="{i18n>PROPOSEORDERBUTTONTEXT}"						
+						press="handleProposeOrder" />						
+									
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

@@ -1,0 +1,25 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog
+		confirm="handleConfirm">		
+		<sortItems>
+			<ViewSettingsItem text="Customer Name" key="Name1" selected="true" />			
+			<ViewSettingsItem text="Last Update" key="DaysSinceUpdate" />
+		</sortItems>
+		<filterItems>
+			<ViewSettingsFilterItem text="Inventory Status" key="1">
+				<items>
+					<ViewSettingsItem text="Low Inventory" key="DaysInvLeft_A" />
+					<ViewSettingsItem text="Inventory OK" key="DaysInvLeft_D" />					
+				</items>
+			</ViewSettingsFilterItem>
+			<ViewSettingsFilterItem text="Customer Status" key="2">
+				<items>
+					<ViewSettingsItem text="Active VMI Locations" key="DelFlag_" selected="true" />
+					<ViewSettingsItem text="Inactive VMI Locations" key="DelFlag_D" />					
+				</items>
+			</ViewSettingsFilterItem>			
+		</filterItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

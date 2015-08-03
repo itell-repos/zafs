@@ -1,0 +1,211 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"    
+	xmlns="sap.m" controllerName="itelli.zafs.view.detail.itemdetail"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="{i18n>ITEMDETAILSPAGETITLE}" showNavButton="true" navButtonPress="handleUpdate" >
+		<content>
+			<ObjectHeader id="CusDetails" title="{CustomerDetails>/Name1}" number="{DaysInvLeft}"
+				numberUnit="days left" icon="sap-icon://product">
+				<attributes>
+					<ObjectAttribute id="MaterialNo" text="" />
+				</attributes>
+				<firstStatus>
+				   <ObjectStatus
+						text="{
+							parts:[{path:'DaysInvLeft'}, {path:'CustomerDetails>/DelFlag'}, {path:'CustomerDetails>/VmiItemCount'}, {path:'LastSoStatus'}],
+							formatter: 'itelli.zafs.util.Formatter.colorFormatter'
+						}"/>
+				</firstStatus>
+			</ObjectHeader>
+
+			<l:Grid defaultSpan="L12 M12 S12" width="auto">
+				<l:content>
+					<f:Form id="itemDetailsForm" minWidth="1024"
+						maxContainerCols="2" editable="true">
+						<f:title>
+							<core:Title text="Item Details" />
+						</f:title>
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanL="3"
+								labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1"
+								columnsM="1" />
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer>
+								<f:formElements>
+									<f:FormElement label="{i18n>LASTUPDATE}">
+										<f:fields>
+											<Text text="{
+							path: 'LastUpdate',
+							formatter: 'itelli.zafs.util.Formatter.dateTo'
+						}">
+												<layoutData>
+													<l:GridData span="L3 M6 S12" />
+												</layoutData>
+											</Text>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>LASTDELIVERYDATE}">
+										<f:fields>
+											<Text text="{
+							path: 'LastDlvDate',
+							formatter: 'itelli.zafs.util.Formatter.dateTo'
+						}">
+												<layoutData>
+													<l:GridData span="L3 M6 S12" />
+												</layoutData>
+											</Text>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>DELIVERYQUANTITY} ">
+										<f:fields>
+											<Text text="{LastDlvQty} {i18n>LBS}">
+												<layoutData>
+													<l:GridData span="L3 M6 S12" />
+												</layoutData>
+											</Text>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ESTIMATEDINVENTORY}">
+										<f:fields>
+											<Text text="{EstInv} {i18n>LBS}">
+												<layoutData>
+													<l:GridData span="L3 M6 S12" />
+												</layoutData>
+											</Text>
+										</f:fields>
+									</f:FormElement>
+
+									<f:FormElement label="{i18n>HERDSIZE}">
+										<f:fields>
+											<Input id="herdSize" value="{HerdSize}">
+												
+											</Input>
+										</f:fields>
+									</f:FormElement>
+									
+									<f:FormElement label="{i18n>CURRENTINVENTORY}">
+										<f:fields>										    
+											<Input id="currInv" value="{CurrInv}" liveChange="currentInvLiveChange">
+											    <layoutData>
+													<l:GridData span="L1 M2 S6" />
+												</layoutData>													
+											</Input>
+										</f:fields>
+										<f:fields>		
+											<Text id="curInvUOMLab">
+											    <layoutData>
+													<l:GridData span="L1 M1 S2" />
+												</layoutData>												
+											</Text>
+										</f:fields>
+										<f:fields>	
+											<Input id="curInvLBS" editable="false">
+											    <layoutData>
+													<l:GridData span="L2 M2 S2" />
+												</layoutData>
+											</Input>
+										</f:fields>
+										<f:fields>
+											<Text text="{i18n>LBS}">
+											    <layoutData>
+													<l:GridData span="L1 M1 S1" />
+												</layoutData>	
+											</Text>											
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>DAILYUSAGELBS/DAY}">
+										<f:fields>
+											<Input id="dailyUsg" value="{DailyUsage}" liveChange="dailyUsageLiveChange">
+											    <layoutData>
+													<l:GridData span="L1 M2 S6" />
+												</layoutData>												
+											</Input>
+										</f:fields>
+										<f:fields>
+											<Text id="dailyUsgUOMLab">
+											    <layoutData>
+													<l:GridData span="L1 M1 S2" />
+												</layoutData>														
+											</Text>
+										</f:fields>
+										<f:fields>
+											<Input id="dailyUsgLBS"  editable="false">
+											    <layoutData>
+													<l:GridData span="L2 M2 S2" />
+												</layoutData>
+											</Input>
+										</f:fields>
+										<f:fields>
+											<Text text="{i18n>LBS}">
+											    <layoutData>
+													<l:GridData span="L1 M1 S1" />
+												</layoutData>	
+											</Text>							
+										</f:fields>
+									</f:FormElement>
+
+									<f:FormElement label="{i18n>ORDERQUANTITY}">
+										<f:fields>
+											<Input id="ordQty" value="{OrderQty}" liveChange="ordQtyLiveChange">
+											    <layoutData>
+													<l:GridData span="L1 M2 S2" />
+												</layoutData>													
+											</Input>
+										</f:fields>
+										<f:fields>
+											<Text id="ordQtyUOMLab">
+											    <layoutData>
+													<l:GridData span="L1 M1 S2" />
+												</layoutData>													
+											</Text>
+										</f:fields>
+										<f:fields>
+											<Input  id="ordQtyLBS"  editable="false" >
+											    <layoutData>
+													<l:GridData span="L1 M2 S2" />
+												</layoutData>	
+											</Input>
+										</f:fields>
+										<f:fields>
+											<Text text="{i18n>LBS}">
+											    <layoutData>
+													<l:GridData span="L1 M1 S2" />
+												</layoutData>	
+											</Text>
+										</f:fields>
+									</f:FormElement>
+									
+
+									<f:FormElement label="{i18n>NOTES}">
+										<f:fields>
+										    <Input id="DaysInvLeft" value="{DaysInvLeft}" visible="false">
+												<layoutData>
+													<l:GridData span="L1 M3 S4" />
+												</layoutData>
+											</Input>
+											<Input id="notes" value="{Notes}">
+												<layoutData>
+													<l:GridData span="L5 M6 S12" />
+												</layoutData>
+											</Input>
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</l:content>
+			</l:Grid>
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button text="{i18n>CANCELBUTTONTEXT}" press="handleCancle" />
+					<!-- <Button text="{i18n>UPDATEBUTTONTEXT}" press="handleUpdate" /> -->
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+
+</core:View>
